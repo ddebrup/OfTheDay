@@ -1,5 +1,5 @@
 # OfTheDay
-A program solely written in python language, aimed at reminding people to wish on their respective (pre-added) birthdates.
+A program solely written in python language, aimed at reminding people to wish to, on their respective (pre-added) birthdates.
 
 ## Procedure
 
