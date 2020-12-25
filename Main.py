@@ -1,0 +1,118 @@
+from pynput import keyboard
+from plyer import notification
+import tkinter as tk
+from tkinter import simpledialog
+import pandas as pd
+import schedule
+from datetime import date
+import time
+# The key combination to check
+COMBINATIONS = [
+    {keyboard.Key.alt, keyboard.KeyCode(char='a')}
+    
+]
+
+# The currently active modifiers
+current = set()
+
+def execute():
+    import tkinter as tk
+    from tkinter import simpledialog
+
+    ROOT = tk.Tk()
+
+    ROOT.withdraw()
+    # the input dialog
+    Name = simpledialog.askstring(title="NAME",
+                                      prompt="ENTER NAME?:")
+    #Date = simpledialog.askstring(title="Test",
+                                      #prompt="ENTER DOB:")
+    Date = simpledialog.askstring(title = "DOB", 
+                                  prompt = "Entire Start Date in MM/DD/YYYY format:", 
+                                  initialvalue="01/01/2010")
+    #Name = "Arun"
+    #Date = "12/12/2020"
+    # check it out
+    #print("Hello", USER_INP)
+    #notification.notify(title= Name,message= Date,app_icon = None,timeout= 10,toast=False)
+    
+    import csv
+    
+    
+    try:
+        with open('Storage.csv', newline='') as f:
+            reader = csv.reader(f)
+            data = list(reader)
+
+
+        new=[]
+        new.append(Name)
+        new.append(Date)
+        if new not in data:
+            with open(r'Storage.csv', 'a') as g: 
+
+            # using csv.writer method from CSV package 
+                write = csv.writer(g) 
+
+                write.writerow(new) 
+        
+    
+    except:
+        
+        new=[]
+        new.append(Name)
+        new.append(Date)
+        
+        with open(r'Storage.csv', 'a') as g: 
+
+            # using csv.writer method from CSV package 
+            write = csv.writer(g) 
+
+            write.writerow(new) 
+
+    
+
+    
+    schedule.every().day.at("20:13").do(job)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(60) # wait one minute
+
+def job():
+        try:
+            with open('Storage.csv', newline='') as f:
+                reader = csv.reader(f)
+                data = list(reader)
+            
+
+            today = date.today()
+            d1 = today.strftime("%d/%m/%Y")
+            
+            for entry in data:
+                if entry[1][0:5]==d1[0:5]:
+                    message="Wish" + entry[0]
+                    notification.notify(title= OfTheDay,
+                    message= message,
+                    app_icon = None,
+                    timeout= 10,
+                    toast=False)
+                    
+        except:
+            pass
+        return
+    
+
+def on_press(key):
+    if any([key in COMBO for COMBO in COMBINATIONS]):
+        current.add(key)
+        if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
+            execute()
+
+def on_release(key):
+    if any([key in COMBO for COMBO in COMBINATIONS]):
+        current.remove(key)
+
+with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
