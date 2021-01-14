@@ -13,7 +13,7 @@ The above code makes the code run as a daemon service for a session (to be made 
 The code starts running in the background as a service <br>
 The keyboard gets listened to, as and when a given key combination gets pressed, the following demonstrated feature gets into working.<br>
 
-### What to expect in the upcoming updates
+### Working on
 ~ A solely independent daemon service firing up the program automatically upon computer wake up<br>
 ~ Customised time based push notifier<br>
 ~ Customised push email based notification services<br>
