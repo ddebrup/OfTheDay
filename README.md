@@ -8,7 +8,7 @@ Clone the repo<br>
 <br>
 Run the following script in bash over the cloned directory<br>
 ~ nohup python main.py &<br>
-The above code makes the code run as a daemon service for a session (intend to add script to make it run solely as an independent service in the background automatically at it's own)<br>
+The above code makes the code run as a daemon service for a session (intend to add script to make it run solely as an independent service in the background automatically after boot)<br>
 <br>
 The code starts running in the background as a service <br>
 The keyboard gets listened to, as and when a given key combination gets pressed, the following demonstrated feature gets into working.<br>
