@@ -7,6 +7,11 @@ Clone the repo<br>
 ~ git clone "https://github.com/ddebrup/OfTheDay.git"<br>
 <br>
 Run the following script in bash over the cloned directory<br>
+> Install all dependencies
+```
+pip install -r requirements.txt
+```
+> Running the script
 ~ nohup python main.py &<br>
 The above code makes the code run as a daemon service for a session (intend to add script to make it run solely as an independent service in the background automatically after boot)<br>
 <br>
